@@ -6,9 +6,8 @@ import dotenv from "dotenv";
 import { checkAndVerify } from './middlewares/auth.js';
 import cors from 'cors';
 
-dbConnectedToMongoDb();
-
 dotenv.config();
+dbConnectedToMongoDb();
 
 const app = express();
 
