@@ -1,5 +1,5 @@
 import exp from "constants";
-import { Book } from "../models/books.js";
+import { Book } from "../models/index.js";
 
 export const createBookHandler = async (req, res) => {
   try {
@@ -25,7 +25,8 @@ export const createBookHandler = async (req, res) => {
 
 export const listBooksHandler = async (req, res) => {
   try {
-    const books = await Book.find();
+    const {userId} = req.locals;
+    const books = await Book.find({userId});
     return res.status(200).json({
       message: "Books list get sucessfully",
       data: books,
