@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
-const {ATLAS_URL} = process.env;
 export const dbConnectedToMongoDb = ()=>{
+    const {ATLAS_URL} = process.env;
     try{
         mongoose.connect(ATLAS_URL);
         console.log("db is connected to node")

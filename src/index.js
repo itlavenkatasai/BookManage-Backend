@@ -7,6 +7,7 @@ import { checkAndVerify } from './middlewares/auth.js';
 import cors from 'cors';
 
 dotenv.config();
+const {PORT} = process.env;
 dbConnectedToMongoDb();
 
 const app = express();
@@ -44,7 +45,6 @@ app.get("/books/:id",getBookByIdHandler);
 app.patch("/books/:id",updateBookByIdHandler);
 app.delete("/books/:id",deleteBookByIdHandler);
 
-const {PORT} = process.env;
 app.listen(PORT,()=>{
     console.log("server is running on port " + PORT);
 });
