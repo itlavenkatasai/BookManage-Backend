@@ -60,7 +60,8 @@ export const loginHandler = async (req,res)=>{
         })
     }
     const {TOKEN_SECRET,TOKEN_EXPIRY} = process.env;
-    const token = await jwt.sign({email,useId: existingUser._id},TOKEN_SECRET,{expiresIn: TOKEN_EXPIRY});
+    console.log("userID in login",existingUser._id);
+    const token = await jwt.sign({email,userId: existingUser._id},TOKEN_SECRET,{expiresIn: TOKEN_EXPIRY});
     return res.status(200).json({
         data:token
     })

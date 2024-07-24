@@ -15,9 +15,9 @@ function formatDate(date) {
 
 // Book schema with custom setter and getter for the year field
 const bookSchema = new mongoose.Schema({
-    title: { type: String },
-    author: { type: String },
-    genre: { type: String },
+    title: { type: String, required: true },
+    author: { type: String, required: true },
+    genre: { type: String, required: true },
     year: {
         type: Date,
         set: function (value) {
@@ -28,7 +28,11 @@ const bookSchema = new mongoose.Schema({
             // Format date to 'yyyy-mm-dd' when retrieving
             return formatDate(value);
         }
-    }
-}, { toJSON: { getters: true }, toObject: { getters: true } });
+    },
+    userId: { type: String, required: true }
+}, { 
+    toJSON: { getters: true }, 
+    toObject: { getters: true } 
+});
 
 export const Book = mongoose.model('Books', bookSchema);

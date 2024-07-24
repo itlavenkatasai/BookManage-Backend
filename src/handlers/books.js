@@ -1,27 +1,31 @@
-import exp from "constants";
 import { Book } from "../models/index.js";
 
 export const createBookHandler = async (req, res) => {
   try {
     const { title, author, genre, year } = req.body;
+    const { userId } = req.locals;
+    console.log("Request locals:", req.locals);  // Debugging line
     const bookDetails = {
       title,
       author,
       genre,
       year,
+      userId,
     };
+    console.log(bookDetails);
     const book = await Book.create(bookDetails);
     return res.status(200).json({
-      message: "book create sucessfully",
+      message: "Book created successfully",
       data: book,
     });
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-      message: "something went wrong please try again",
+      message: "Something went wrong, please try again",
     });
   }
 };
+
 
 export const listBooksHandler = async (req, res) => {
   try {

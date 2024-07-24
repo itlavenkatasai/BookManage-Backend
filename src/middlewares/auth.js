@@ -26,6 +26,7 @@ export const checkAndVerify = async (req,res,next) => {
         const payload = Jwt.verify(token,TOKEN_SECRET);
         const {email,userId} = payload;
         req.locals = {email,userId};
+        // console.log("auth userId",userId);
         return next();
     }catch(error){
         console.log(error.message);
